@@ -11,8 +11,16 @@ const App: () => Node = () => {
     return (
         <NavigationContainer>
             <Stack.Navigator>
-                <Stack.Screen name="Home" component={HomeScreen} />
-                <Stack.Screen name="Templates" component={TemplateScreen} />
+                <Stack.Screen 
+                    name="Home"
+                    component={HomeScreen}
+                    options={{ title: "Contactless" }}
+                />
+                <Stack.Screen 
+                    name="Templates"
+                    component={TemplateScreen}
+                    options={{ title: "Choose a Template" }}
+                />
             </Stack.Navigator>
         </NavigationContainer>
     );
