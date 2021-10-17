@@ -1,11 +1,22 @@
-import React from 'react';
+import * as React from 'react'
 import { View, Text, Button } from 'react-native';
 
 const TemplateScreen = ({ navigation }) => {
+    const [template, setTemplate] = React.useState("");
+
+    if(template == null || template == "") {
+        return (
+            <View>
+                <Button
+                    title="Professional"
+                    onPress={() => setTemplate("Professional") }
+                />
+            </View>
+        )
+    }
+
     return (
-        <View>
-            <Text>Template Screen</Text>
-        </View>
+        <Text>nothing</Text>
     )
 }
 
