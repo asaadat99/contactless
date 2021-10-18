@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 var HomeScreen = require('./HomeScreen.js')
 var TemplateScreen = require('./TemplateScreen.js')
+var Generate = require('./Generate.js')
 const Stack = createNativeStackNavigator();
 
 const App: () => Node = () => {
@@ -20,6 +21,11 @@ const App: () => Node = () => {
                     name="Templates"
                     component={TemplateScreen}
                     options={{ title: "Choose a Template" }}
+                />
+                <Stack.Screen 
+                    name="Generate"
+                    component={Generate}
+                    options={{ title: "Preview" }}
                 />
             </Stack.Navigator>
         </NavigationContainer>
