@@ -27,7 +27,7 @@ const App: () => Node = () => {
                 <Stack.Screen 
                     name="Templates"
                     component={Templates}
-                    options={{ title: "Fill in your contact information" }}
+                    options={{ title: "Fill in your contact info" }}
                 />
                 <Stack.Screen 
                     name="Generate"
