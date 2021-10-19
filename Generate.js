@@ -10,7 +10,9 @@ const Generate = ({ navigation }) => {
 
     return (
         <View>
-            TODO
+            <Text>
+                TODO
+            </Text>
         </View>
     )
 }

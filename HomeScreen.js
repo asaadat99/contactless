@@ -7,7 +7,7 @@ const HomeScreen = ({ navigation }) => {
             <Button
                 title="Create a new pass"
                 onPress={() => 
-                    navigation.navigate('Templates')
+                    navigation.navigate('TemplatePicker')
                 }
             />
         </View>

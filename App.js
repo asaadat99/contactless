@@ -3,8 +3,10 @@ import { NavigationContainer, StackActions } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 var HomeScreen = require('./HomeScreen.js')
-var TemplateScreen = require('./TemplateScreen.js')
+var TemplateScreen = require('./TemplatePicker.js')
 var Generate = require('./Generate.js')
+var Templates = require('./Templates.js')
+
 const Stack = createNativeStackNavigator();
 
 const App: () => Node = () => {
@@ -18,9 +20,14 @@ const App: () => Node = () => {
                     options={{ title: "Contactless" }}
                 />
                 <Stack.Screen 
-                    name="Templates"
+                    name="TemplatePicker"
                     component={TemplateScreen}
-                    options={{ title: "Choose a Template" }}
+                    options={{ title: "Choose a template" }}
+                />
+                <Stack.Screen 
+                    name="Templates"
+                    component={Templates}
+                    options={{ title: "Fill in your contact information" }}
                 />
                 <Stack.Screen 
                     name="Generate"
