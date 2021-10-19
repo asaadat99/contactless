@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
+import QRCode from 'react-native-qrcode-svg';
 
 var vCardsJS = require('react-native-vcards');
 
@@ -20,8 +21,12 @@ const Generate = ({ route, navigation }) => {
         switch(key) {
         case "name":
             const firstSpace = value.indexOf(' ');
-            contact.firstName = value.slice(0, firstSpace);
-            contact.lastName = value.slice(firstSpace + 1);
+            if(firstSpace !== -1) {
+                contact.firstName = value.slice(0, firstSpace);
+                contact.lastName = value.slice(firstSpace + 1);
+            } else {
+                contact.firstName = value;
+            }
             break;
         case "email":
             contact.email = value;
@@ -39,8 +44,11 @@ const Generate = ({ route, navigation }) => {
     return (
         <View>
             <Text>
-                TODO
+                {contact.getFormattedString()}
             </Text>
+            <QRCode
+                value={contact.getFormattedString()}
+            />
         </View>
     )
 }
