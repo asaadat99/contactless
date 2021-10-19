@@ -59,7 +59,7 @@ const Templates = ({ route, navigation }) => {
                     <Button
                         title="Continue"
                         onPress={() => 
-                            navigation.navigate('Generate', fields)
+                            navigation.navigate('Generate', { fields: fields })
                         }
                     />
                 </ScrollView>
