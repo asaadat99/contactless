@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text } from 'react-native';
 
 // Given user input data as props, generates QR code and Apple Wallet pass
 // Then, it returns the preview to the pass and confirm/cancel buttons

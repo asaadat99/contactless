@@ -1,5 +1,7 @@
-import * as React from 'react'
-import { View, Text, TextInput, ScrollView, StyleSheet } from 'react-native';
+import React from 'react';
+import { View, Text, TextInput, ScrollView } from 'react-native';
+import Button from './Button.js';
+import styles from "./Styles.js";
 
 const Templates = ({ route, navigation }) => {
     const { type } = route.params;
@@ -54,6 +56,12 @@ const Templates = ({ route, navigation }) => {
                         value={fields.website}
                         onChangeText={text => updateField("website", text)}
                     />
+                    <Button
+                        title="Continue"
+                        onPress={() => 
+                            navigation.navigate('Generate', fields)
+                        }
+                    />
                 </ScrollView>
             </View>
         )
@@ -67,14 +75,5 @@ const Templates = ({ route, navigation }) => {
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    input: {
-        height: 40,
-        margin: 12,
-        borderWidth: 1,
-        padding: 10,
-    },
-});
 
 module.exports = Templates;
