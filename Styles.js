@@ -6,6 +6,7 @@ export default StyleSheet.create({
         margin: 12,
         borderWidth: 1,
         padding: 10,
+        fontSize: 16
     },
     button: {
         alignItems: 'center',
