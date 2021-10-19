@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
+var vCardsJS = require('react-native-vcards');
+
 // Given user input data as props, generates QR code and Apple Wallet pass
 // Then, it returns the preview to the pass and confirm/cancel buttons
 // TOOD: if unable to preview pass, confirm all inputs instead
