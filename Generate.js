@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
+import Passkit, { AddPassButton } from 'react-native-passkit-wallet';
+import PassKit from 'react-native-passkit-wallet';
 
 var vCardsJS = require('react-native-vcards');
 
@@ -39,7 +41,11 @@ const Generate = ({ route, navigation }) => {
 
     // generate QR code
 
-    // generate apple wallet passvcards
+    // generate apple wallet pass vcards
+    passkitAvailable = false;
+    PassKit.canAddPasses().then((result) => {
+        passkitAvailable = true;
+    })
 
     return (
         <View>
@@ -49,6 +55,10 @@ const Generate = ({ route, navigation }) => {
             <QRCode
                 value={contact.getFormattedString()}
             />
+            {passkitAvailable
+                ? <Text> passket is available </Text>
+                : <Text> passkit is NOT available </Text>
+            }
         </View>
     )
 }
