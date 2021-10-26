@@ -8,42 +8,6 @@ import { generate } from 'css-tree';
 var vCardsJS = require('react-native-vcards');
 var Buffer = require('buffer').Buffer;
 
-function getEncodedQRCode(qrCodeSvg) {
-    // need to call callback function with toDataUrl
-    qrCodeSvg.toDataURL(generatePass)
-}
-
-function generatePass(qrCodeSvgData) {
-    // generate apple wallet pass
-    // TODO: generate serial number
-    // TODO: get team identifier issued by apple
-        
-    pass = {
-        "description": "Test pass",
-        "formatVersion": 1,
-        "organizationName": "Contactless",
-        "passTypeIdentifier": "pass.com.contactless.card",
-        "serialNumber": 12345,
-        "teamIdentifier": "TODO",
-        "storeCard": {
-            
-        },
-        "barcodes": [
-            {
-                "format": "PKBarcodeFormatQR",
-                "message": qrCodeSvgData,
-                "messageEncoding": "iso-8859-1"
-            }
-        ]
-    };
-
-    var encodedPass = Buffer.from(JSON.stringify(pass).toString("base64"));    
-
-    // prompt user to add pass (testing on android)
-    // TODO: need to enocde pass as zip file
-    PassKit.addPass(encodedPass, "com.contactless.fileprovider");    
-}
-
 // Given user input data as props, generates QR code and Apple Wallet pass
 // Then, it returns the preview to the pass and confirm/cancel buttons
 // TOOD: if unable to preview pass, confirm all inputs instead
@@ -77,15 +41,36 @@ const Generate = ({ route, navigation }) => {
         }
     }
 
-    // generate QR code
+    // generate apple wallet pass
+    // TODO: generate serial number
+    // TODO: get team identifier issued by apple
+    pass = {
+        "description": "Test pass",
+        "formatVersion": 1,
+        "organizationName": "Contactless",
+        "passTypeIdentifier": "pass.com.contactless.card",
+        "serialNumber": 12345,
+        "teamIdentifier": "TODO",
+        "storeCard": {
+            
+        },
+        "barcodes": [
+            {
+                "format": "PKBarcodeFormatQR",
+                "message": contact.getFormattedString(),
+                "messageEncoding": "iso-8859-1"
+            }
+        ]
+    };
+
+    var encodedPass = Buffer.from(JSON.stringify(pass).toString("base64"));    
+
+    // prompt user to add pass (testing on android)
+    // TODO: need to enocde pass as zip file, this doesn't work yets
+    PassKit.addPass(encodedPass, "com.contactless.fileprovider"); 
 
     return (
-        <View>
-            <QRCode
-                value={contact.getFormattedString()}
-                getRef={(c) => getEncodedQRCode(c)}
-            />
-        </View>
+        <View></View>
     )
 
     // use this for final iOS build
