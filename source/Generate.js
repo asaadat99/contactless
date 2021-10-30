@@ -34,6 +34,15 @@ const Generate = ({ route, navigation }) => {
         case "phone":
             contact.cellPhone = value;
             break;
+        case "linkedin":
+            contact.socialUrls["linkedIn"] = "https://www.linkedin.com/in/" + value;
+            break;
+        case "github":
+            contact.socialUrls["GitHub"] = "https://github.com/" + value;
+            break;
+        case "website":
+            contact.url = value;
+            break;
         }
     }
 
