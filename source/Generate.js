@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { writeFile, DocumentDirectoryPath, unlink, readFile } from 'react-native-fs';
 import Button from './Button.js';
+import Card from './Card.js';
 
 var vCardsJS = require('react-native-vcards');
 
@@ -46,19 +47,6 @@ const Generate = ({ route, navigation }) => {
         }
     }
 
-    return (
-        <View>
-            <Button title="Save Card"
-                onPress={() => saveCard(contact, fields).then(() => navigation.navigate('Home'))}
-            />
-            <Button title="Cancel"
-                onPress={() => navigation.navigate('Home')}
-            />
-        </View>
-    )
-}
-
-async function saveCard(contact, fields) {
     // create object to store data needed to render card
     var cardData = {
         vcardString: contact.getFormattedString(),
@@ -66,6 +54,20 @@ async function saveCard(contact, fields) {
         type: fields["type"]
     };
 
+    return (
+        <View>
+            <Button title="Save Card"
+                onPress={() => saveCard(cardData).then(() => navigation.navigate('Home'))}
+            />
+            <Button title="Cancel"
+                onPress={() => navigation.navigate('Home')}
+            />
+            <Card data={cardData} />
+        </View>
+    )
+}
+
+async function saveCard(cardData) {
     var cardpath = DocumentDirectoryPath + "/cards/card.json";
 
     // delete old card file with same name
