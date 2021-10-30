@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { writeFile, DocumentDirectoryPath, unlink } from 'react-native-fs';
+import { writeFile, DocumentDirectoryPath, unlink, readFile } from 'react-native-fs';
 import Button from './Button.js';
 
 var vCardsJS = require('react-native-vcards');
@@ -40,7 +40,7 @@ const Generate = ({ route, navigation }) => {
     return (
         <View>
             <Button title="Save Card"
-                onPress={() => saveCard(contact, navigation)}
+                onPress={() => saveCard(contact).then(() => navigation.navigate('Home'))}
             />
             <Button title="Cancel"
                 onPress={() => navigation.navigate('Home')}
@@ -49,7 +49,7 @@ const Generate = ({ route, navigation }) => {
     )
 }
 
-async function saveCard(contact, navigation) {
+async function saveCard(contact) {
     // create object to store data needed to render card
     var cardData = {
         vcardString: contact.getFormattedString()
@@ -64,9 +64,6 @@ async function saveCard(contact, navigation) {
 
     // write card data as json to file
     await writeFile(cardpath , JSON.stringify(cardData));
-    
-    // return to home screen
-    navigation.navigate('Home');
 }
 
 module.exports = Generate;

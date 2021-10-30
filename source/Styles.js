@@ -14,7 +14,7 @@ export default StyleSheet.create({
         paddingVertical: 12,
         paddingHorizontal: 32,
         borderRadius: 4,
-        backgroundColor: "#3e96fa",
+        backgroundColor: '#3e96fa',
         margin: 12,
     },
     button_text: {
@@ -27,5 +27,15 @@ export default StyleSheet.create({
     },
     card: {
         alignItems: 'center',
+        padding: 20,
+        margin: 12,
+        borderWidth: 5,
+        borderRadius: 10,
+        borderColor: 'white'
+    },
+    qrcode: {
+       borderWidth: 6,
+       padding: 3,
+       backgroundColor: 'white'
     }
 });
