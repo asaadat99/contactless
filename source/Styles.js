@@ -24,5 +24,8 @@ export default StyleSheet.create({
         letterSpacing: 0.25,
         color: 'white',
         textTransform: 'uppercase',
+    },
+    card: {
+        alignItems: 'center',
     }
 });

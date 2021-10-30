@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import QRCode from 'react-native-qrcode-svg';
-import styles from "./Styles.js";
+import { View, Text } from 'react-native';
+import { writeFile, DocumentDirectoryPath, unlink } from 'react-native-fs';
+import Button from './Button.js';
 
 var vCardsJS = require('react-native-vcards');
 
@@ -38,8 +38,35 @@ const Generate = ({ route, navigation }) => {
     }
 
     return (
-        <View></View>
+        <View>
+            <Button title="Save Card"
+                onPress={() => saveCard(contact, navigation)}
+            />
+            <Button title="Cancel"
+                onPress={() => navigation.navigate('Home')}
+            />
+        </View>
     )
+}
+
+async function saveCard(contact, navigation) {
+    // create object to store data needed to render card
+    var cardData = {
+        vcardString: contact.getFormattedString()
+    };
+
+    var cardpath = DocumentDirectoryPath + "/cards/card.json";
+
+    // delete old card file with same name
+    try {
+        await unlink(cardpath);
+    } catch(error) {}
+
+    // write card data as json to file
+    await writeFile(cardpath , JSON.stringify(cardData));
+    
+    // return to home screen
+    navigation.navigate('Home');
 }
 
 module.exports = Generate;
