@@ -7,12 +7,18 @@ import { useEffect } from 'react';
 
 const HomeScreen = ({ navigation }) => {
     const [ cards, setCards ] = React.useState([]);
+    const [ listening, setListening ] = React.useState(false);
     var cardDisplays = [];
-    
+
     useEffect(() => {
-        loadCards().then((res) => { 
-            setCards(res);
-        });
+        if (!listening) {
+            navigation.addListener('focus', () => {
+                loadCards().then((res) => { 
+                    setCards(res);
+                });
+            });
+            setListening(true);
+        }   
     });
 
     if(cards.length !== 0) {

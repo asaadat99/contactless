@@ -73,10 +73,14 @@ async function saveCard(cardData) {
     // delete old card file with same name
     try {
         await unlink(cardpath);
-    } catch(error) {}
+    } catch(error) {
+        // if the file was not found, do nothing
+    }
 
     // write card data as json to file
     await writeFile(cardpath , JSON.stringify(cardData));
+
+    return null;
 }
 
 module.exports = Generate;

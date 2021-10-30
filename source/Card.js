@@ -14,7 +14,7 @@ const Card = (props) => {
                 <View style={styles.qrcode}>
                     <QRCode
                         value={props.data["vcardString"]}
-                        size={250}
+                        size={275}
                     />
                 </View>
                 <Text style={styles.card_title_text}>
