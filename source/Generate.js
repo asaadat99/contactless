@@ -40,7 +40,7 @@ const Generate = ({ route, navigation }) => {
     return (
         <View>
             <Button title="Save Card"
-                onPress={() => saveCard(contact).then(() => navigation.navigate('Home'))}
+                onPress={() => saveCard(contact, fields).then(() => navigation.navigate('Home'))}
             />
             <Button title="Cancel"
                 onPress={() => navigation.navigate('Home')}
@@ -49,10 +49,12 @@ const Generate = ({ route, navigation }) => {
     )
 }
 
-async function saveCard(contact) {
+async function saveCard(contact, fields) {
     // create object to store data needed to render card
     var cardData = {
-        vcardString: contact.getFormattedString()
+        vcardString: contact.getFormattedString(),
+        name: fields["name"],
+        type: fields["type"]
     };
 
     var cardpath = DocumentDirectoryPath + "/cards/card.json";

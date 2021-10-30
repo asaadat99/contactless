@@ -7,7 +7,7 @@ const Templates = ({ route, navigation }) => {
     const { type } = route.params;
 
     // store keys/values for input fields in state
-    const [fields, setFields] = React.useState({});
+    const [ fields, setFields ] = React.useState({});
 
     function updateField(field, value) {
         updatedFields = {};
@@ -58,9 +58,12 @@ const Templates = ({ route, navigation }) => {
                     />
                     <Button
                         title="Continue"
-                        onPress={() => 
-                            navigation.navigate('Generate', { fields: fields })
-                        }
+                        onPress={() => {
+                            gotFields = {};
+                            Object.assign(gotFields, fields);
+                            gotFields["type"] = "Professional";
+                            navigation.navigate('Generate', { fields: gotFields });
+                        }}
                     />
                 </ScrollView>
             </View>

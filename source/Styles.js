@@ -27,15 +27,21 @@ export default StyleSheet.create({
     },
     card: {
         alignItems: 'center',
-        padding: 20,
+        padding: 6,
         margin: 12,
         borderWidth: 5,
         borderRadius: 10,
         borderColor: 'white'
     },
+    card_title_text: {
+        fontSize: 30,
+        fontWeight: 'bold',
+        color: 'white',
+        lineHeight: 42,
+    },
     qrcode: {
        borderWidth: 6,
        padding: 3,
        backgroundColor: 'white'
-    }
+    },
 });
