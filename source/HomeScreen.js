@@ -6,7 +6,7 @@ const HomeScreen = ({ navigation }) => {
     return (
         <View>
             <Button
-                title="Create a new pass"
+                title="Create a new card"
                 onPress={() => 
                     navigation.navigate('TemplatePicker')
                 }

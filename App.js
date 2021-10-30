@@ -2,10 +2,10 @@ import * as React from 'react';
 import { NavigationContainer, StackActions } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-var HomeScreen = require('./HomeScreen.js')
-var TemplateScreen = require('./TemplatePicker.js')
-var Generate = require('./Generate.js')
-var Templates = require('./Templates.js')
+var HomeScreen = require('./source/HomeScreen.js');
+var TemplateScreen = require('./source/TemplatePicker.js');
+var Generate = require('./source/Generate.js');
+var Templates = require('./source/Templates.js');
 
 const Stack = createNativeStackNavigator();
 
