@@ -2,13 +2,12 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import Button from './Button.js';
 import * as fs from 'react-native-fs';
-import Card from './Card.js';
+import CardSwapper from './CardSwapper';
 import { useEffect } from 'react';
 
 const HomeScreen = ({ navigation }) => {
     const [ cards, setCards ] = React.useState([]);
     const [ listening, setListening ] = React.useState(false);
-    var cardDisplays = [];
 
     useEffect(() => {
         if (!listening) {
@@ -21,15 +20,9 @@ const HomeScreen = ({ navigation }) => {
         }   
     });
 
-    if(cards.length !== 0) {
-        cardDisplays.push(
-            <Card key={0} data={cards[0]} /> 
-        );
-    }
-
     return (
         <View>
-            {cardDisplays}
+            <CardSwapper cards={cards} />
             <Button
                 title="Create a new card"
                 onPress={() => 
