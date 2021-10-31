@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pressable } from 'react-native';
+import { View, Pressable, Text } from 'react-native';
 import styles from "./Styles.js";
 import Card from "./Card.js"
 
@@ -20,9 +20,14 @@ const CardSwapper = (props) => {
     }
 
     return (
-        <Pressable onPress={onPress}>
-            <Card key={currCard} data={cards[currCard]} />
-        </Pressable>
+        <View>
+            <Text style={styles.body_text}>
+                    Tap to switch cards
+            </Text>
+            <Pressable onPress={onPress}>
+                <Card key={currCard} data={cards[currCard]} />
+            </Pressable>
+        </View>
     );
 }
 
