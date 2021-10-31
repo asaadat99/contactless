@@ -44,4 +44,11 @@ export default StyleSheet.create({
        padding: 3,
        backgroundColor: 'white'
     },
+    body_text: {
+        fontSize: 18,
+        color: '#737373',
+        textAlign: 'center',
+        fontWeight: 'bold',
+        paddingTop: 16
+    }
 });

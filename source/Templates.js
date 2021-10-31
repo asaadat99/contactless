@@ -33,7 +33,6 @@ const Templates = ({ route, navigation }) => {
                         value={fields.email}
                         onChangeText={text => updateField("email", text)}
                         placeholderTextColor="#878787"
-
                     />
                     <TextInput
                         style={styles.input}
@@ -69,6 +68,59 @@ const Templates = ({ route, navigation }) => {
                             gotFields = {};
                             Object.assign(gotFields, fields);
                             gotFields["type"] = "Professional";
+                            navigation.navigate('Generate', { fields: gotFields });
+                        }}
+                    />
+                </ScrollView>
+            </View>
+        )
+    }
+
+    if(type === "Social") {
+        return (
+            <View>
+                <ScrollView>
+                    <TextInput 
+                        style={styles.input}
+                        placeholder="Name"
+                        value={fields.name}
+                        onChangeText={text => updateField("name", text)}
+                        placeholderTextColor="#878787"
+                    />
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Email"
+                        value={fields.email}
+                        onChangeText={text => updateField("email", text)}
+                        placeholderTextColor="#878787"
+                    />
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Phone Number"
+                        value={fields.phone}
+                        onChangeText={text => updateField("phone", text)}
+                        placeholderTextColor="#878787"
+                    />
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Instagram Profile"
+                        value={fields.linkedin}
+                        onChangeText={text => updateField("instagram", text)}
+                        placeholderTextColor="#878787"
+                    />
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Snapchat Profile"
+                        value={fields.linkedin}
+                        onChangeText={text => updateField("snapchat", text)}
+                        placeholderTextColor="#878787"
+                    />
+                    <Button
+                        title="Continue"
+                        onPress={() => {
+                            gotFields = {};
+                            Object.assign(gotFields, fields);
+                            gotFields["type"] = "Social";
                             navigation.navigate('Generate', { fields: gotFields });
                         }}
                     />

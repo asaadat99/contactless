@@ -4,6 +4,7 @@ import Button from './Button.js';
 import * as fs from 'react-native-fs';
 import CardSwapper from './CardSwapper';
 import { useEffect } from 'react';
+import styles from './Styles.js'
 
 const HomeScreen = ({ navigation }) => {
     const [ cards, setCards ] = React.useState([]);
@@ -22,6 +23,9 @@ const HomeScreen = ({ navigation }) => {
 
     return (
         <View>
+            <Text style={styles.body_text}>
+                Tap to switch cards
+            </Text>
             <CardSwapper cards={cards} />
             <Button
                 title="Create a new card"

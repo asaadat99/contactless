@@ -11,6 +11,12 @@ const TemplatePicker = ({ navigation }) => {
                     navigation.navigate('Templates', { type: "Professional" })
                 }
             />
+            <Button
+                title="Social"
+                onPress={() =>  
+                    navigation.navigate('Templates', { type: "Social" })
+                }
+            />
         </View>
     )
 }

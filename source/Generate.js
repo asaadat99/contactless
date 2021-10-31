@@ -44,6 +44,12 @@ const Generate = ({ route, navigation }) => {
         case "website":
             contact.url = value;
             break;
+        case "instagram":
+            contact.socialUrls["instagram"] = "https://www.instagram.com/" + value;
+            break;
+        case "snapchat":
+            contact.socialUrls["snapchat"] = "http://www.snapchat.com/add/" + value;
+            break;
         }
     }
 
@@ -51,9 +57,9 @@ const Generate = ({ route, navigation }) => {
     // TODO: make this an option for the user
     var color = [];
     if(fields["type"] == "Professional") {
-        color = ['#5e90db', '#0d10a6'];
+        color = ['#19babf', '#2045a1'];
     } else {
-        color = ['#ff2977', '#ab0205'];
+        color = ['#db375d', '#9e1e70'];
     }
 
     // create object to store data needed to render card
