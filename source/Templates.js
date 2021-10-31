@@ -20,41 +20,48 @@ const Templates = ({ route, navigation }) => {
         return (
             <View>
                 <ScrollView>
-                    <TextInput
+                    <TextInput 
                         style={styles.input}
                         placeholder="Name"
                         value={fields.name}
                         onChangeText={text => updateField("name", text)}
+                        placeholderTextColor="#878787"
                     />
                     <TextInput
                         style={styles.input}
                         placeholder="Email"
                         value={fields.email}
                         onChangeText={text => updateField("email", text)}
+                        placeholderTextColor="#878787"
+
                     />
                     <TextInput
                         style={styles.input}
                         placeholder="Phone Number"
                         value={fields.phone}
                         onChangeText={text => updateField("phone", text)}
+                        placeholderTextColor="#878787"
                     />
                     <TextInput
                         style={styles.input}
                         placeholder="LinkedIn Profile"
                         value={fields.linkedin}
                         onChangeText={text => updateField("linkedin", text)}
+                        placeholderTextColor="#878787"
                     />
                     <TextInput
                         style={styles.input}
                         placeholder="Github Profile"
                         value={fields.github}
                         onChangeText={text => updateField("github", text)}
+                        placeholderTextColor="#878787"
                     />
                     <TextInput
                         style={styles.input}
                         placeholder="Website/Resume URL"
                         value={fields.website}
                         onChangeText={text => updateField("website", text)}
+                        placeholderTextColor="#878787"
                     />
                     <Button
                         title="Continue"
