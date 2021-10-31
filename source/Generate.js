@@ -47,11 +47,21 @@ const Generate = ({ route, navigation }) => {
         }
     }
 
+    // temporary color setting
+    // TODO: make this an option for the user
+    var color = [];
+    if(fields["type"] == "Professional") {
+        color = ['#5e90db', '#0d10a6'];
+    } else {
+        color = ['#ff2977', '#ab0205'];
+    }
+
     // create object to store data needed to render card
     var cardData = {
         vcardString: contact.getFormattedString(),
         name: fields["name"],
-        type: fields["type"]
+        type: fields["type"],
+        color: color,
     };
 
     return (
@@ -68,7 +78,7 @@ const Generate = ({ route, navigation }) => {
 }
 
 async function saveCard(cardData) {
-    var cardpath = DocumentDirectoryPath + "/cards/card.json";
+    var cardpath = DocumentDirectoryPath + "/cards/card-" + cardData["type"] + ".json";
 
     // delete old card file with same name
     try {

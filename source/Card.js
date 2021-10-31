@@ -7,7 +7,7 @@ import LinearGradient from 'react-native-linear-gradient';
 const Card = (props) => {
     return (
         <View>
-            <LinearGradient colors={['#5e90db', '#0d10a6']} style={styles.card}>
+            <LinearGradient colors={props.data["color"]} style={styles.card}>
                 <Text style={styles.card_title_text}>
                     {props.data["name"]}
                 </Text>
