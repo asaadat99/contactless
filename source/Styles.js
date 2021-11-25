@@ -16,7 +16,8 @@ export default StyleSheet.create({
         paddingHorizontal: 32,
         borderRadius: 4,
         backgroundColor: '#3e96fa',
-        margin: 12,
+        marginVertical: 6,
+        marginHorizontal: 48,
     },
     button_text: {
         fontSize: 16,
