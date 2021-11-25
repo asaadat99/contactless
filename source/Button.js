@@ -4,8 +4,12 @@ import styles from "./Styles.js";
 
 export default function Button(props) {
     const { onPress, title } = props;
+
+    // return blue button by default
+    var buttonStyle = styles.button;
+
     return (
-        <Pressable style={styles.button} onPress={onPress}>
+        <Pressable style={buttonStyle} onPress={onPress}>
             <Text style={styles.button_text}>{title}</Text>
         </Pressable>
     );

@@ -2,6 +2,8 @@ import React from 'react';
 import { View, Text, TextInput, ScrollView } from 'react-native';
 import Button from './Button.js';
 import styles from "./Styles.js";
+import Fields from './Fields.js';
+import FieldPicker from './Picker.js'
 
 const Templates = ({ route, navigation }) => {
     const { type } = route.params;
@@ -16,17 +18,34 @@ const Templates = ({ route, navigation }) => {
         setFields(updatedFields);
     };
 
+    const fieldInput = new Fields(updateField);
+
+    const buttons = (
+        <View>
+            <Button
+                title="Continue"
+                onPress={() => {
+                    gotFields = {};
+                    Object.assign(gotFields, fields);
+                    // User must input name
+                    if(gotFields["name"] == undefined || gotFields["name"] == "") {
+                        return;
+                    }
+                    gotFields["type"] = "Professional";
+                    navigation.navigate('Generate', { fields: gotFields });
+                }}
+            />
+            <FieldPicker
+                options={fieldInput.fields}
+            />
+        </View>
+    );
+
     if(type === "Professional") {
         return (
             <View>
                 <ScrollView>
-                    <TextInput 
-                        style={styles.input}
-                        placeholder="Name"
-                        value={fields.name}
-                        onChangeText={text => updateField("name", text)}
-                        placeholderTextColor="#878787"
-                    />
+                    {fieldInput.addField("name")}
                     <TextInput
                         style={styles.input}
                         placeholder="Email"
@@ -62,15 +81,7 @@ const Templates = ({ route, navigation }) => {
                         onChangeText={text => updateField("website", text)}
                         placeholderTextColor="#878787"
                     />
-                    <Button
-                        title="Continue"
-                        onPress={() => {
-                            gotFields = {};
-                            Object.assign(gotFields, fields);
-                            gotFields["type"] = "Professional";
-                            navigation.navigate('Generate', { fields: gotFields });
-                        }}
-                    />
+                    {buttons}
                 </ScrollView>
             </View>
         )
@@ -115,15 +126,7 @@ const Templates = ({ route, navigation }) => {
                         onChangeText={text => updateField("snapchat", text)}
                         placeholderTextColor="#878787"
                     />
-                    <Button
-                        title="Continue"
-                        onPress={() => {
-                            gotFields = {};
-                            Object.assign(gotFields, fields);
-                            gotFields["type"] = "Social";
-                            navigation.navigate('Generate', { fields: gotFields });
-                        }}
-                    />
+                    {buttons}
                 </ScrollView>
             </View>
         )
