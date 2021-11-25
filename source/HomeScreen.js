@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 import Button from './Button.js';
 import * as fs from 'react-native-fs';
 import CardSwapper from './CardSwapper';
@@ -22,13 +22,21 @@ const HomeScreen = ({ navigation }) => {
 
     return (
         <View>
-            <CardSwapper cards={cards} />
-            <Button
-                title="Create a new card"
-                onPress={() => 
-                    navigation.navigate('TemplatePicker')
-                }
-            />
+            <ScrollView>
+                <CardSwapper cards={cards} />
+                <Button
+                    title="Create a new card"
+                    onPress={() => 
+                        navigation.navigate('TemplatePicker')
+                    }
+                />
+                <Button
+                    title="Delete this card"
+                    onPress={() => 
+                        deleteCard()
+                    }
+                />
+            </ScrollView>
         </View>
     )
 }

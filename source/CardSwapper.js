@@ -19,11 +19,19 @@ const CardSwapper = (props) => {
         return null;
     }
 
+    promptText = <Text></Text>;
+
+    if(cards.length > 1) {
+        promptText = (
+            <Text style={styles.body_text}>
+                Tap to switch cards
+            </Text>
+        )
+    }
+
     return (
         <View>
-            <Text style={styles.body_text}>
-                    Tap to switch cards
-            </Text>
+            {promptText}
             <Pressable onPress={onPress}>
                 <Card key={currCard} data={cards[currCard]} />
             </Pressable>
