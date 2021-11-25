@@ -72,6 +72,7 @@ const Generate = ({ route, navigation }) => {
 
     return (
         <View>
+            <Text></Text>
             <Button title="Save Card"
                 onPress={() => saveCard(cardData).then(() => navigation.navigate('Home'))}
             />

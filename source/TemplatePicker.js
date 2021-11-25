@@ -5,7 +5,7 @@ import Button from './Button.js';
 const TemplatePicker = ({ navigation }) => {
     return (
         <View>
-            <Text>{"\n"}</Text>
+            <Text></Text>
             <Button
                 title="Professional"
                 onPress={() =>  

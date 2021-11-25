@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, ScrollView } from 'react-native';
-import Button from './Button.js';
 import * as fs from 'react-native-fs';
 import CardSwapper from './CardSwapper';
 import { useEffect } from 'react';
@@ -20,48 +19,58 @@ const HomeScreen = ({ navigation }) => {
         }   
     });
 
+    async function loadCards() {
+        // attempt to load cards from file system
+        let cardspath = fs.DocumentDirectoryPath + "/cards";
+    
+        // read files from cards dir, create it if it doesn't exist
+        let files = [];
+        try {
+            files = await fs.readdir(cardspath);
+        } catch (error) {
+            await fs.mkdir(cardspath);
+            return [];
+        }
+    
+        // read the files
+        let cards = [];
+    
+        for(let f of files) {
+            let cardData;
+            try {
+                cardData = await fs.readFile(cardspath + "/" + f);
+            }
+            catch(error) {
+                continue;
+            }
+
+            cards.push({
+                data: JSON.parse(cardData),
+                path: cardspath + "/" + f
+            });
+        }
+    
+        return cards;
+    }
+    
+    async function deleteCard(cardpath) {
+        await fs.unlink(cardpath);
+        loadCards().then((res) => { 
+            setCards(res);
+        });
+    }
+
     return (
         <View>
             <ScrollView>
-                <CardSwapper cards={cards} />
-                <Button
-                    title="Create a new card"
-                    onPress={() => 
-                        navigation.navigate('TemplatePicker')
-                    }
-                />
-                <Button
-                    title="Delete this card"
-                    onPress={() => 
-                        deleteCard()
-                    }
+                <CardSwapper 
+                    cards={cards} 
+                    navigation={navigation}
+                    deleteCard={deleteCard}
                 />
             </ScrollView>
         </View>
     )
-}
-
-async function loadCards() {
-    // attempt to load cards from file system
-    var cardspath = fs.DocumentDirectoryPath + "/cards";
-
-    // read files from cards dir, create it if it doesn't exist
-    var files = [];
-    try {
-        files = await fs.readdir(cardspath);
-    } catch (error) {
-        await fs.mkdir(cardspath);
-        return [];
-    }
-
-    // read the files
-    var cards = [];
-
-    for(let f of files) {
-        cards.push(JSON.parse(await fs.readFile(cardspath + "/" + f)));
-    }
-
-    return cards;
 }
 
 module.exports = HomeScreen;
