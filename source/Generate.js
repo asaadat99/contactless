@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { writeFile, DocumentDirectoryPath, unlink, readFile } from 'react-native-fs';
+import { writeFile, DocumentDirectoryPath, unlink, readdir } from 'react-native-fs';
 import Button from './Button.js';
 import Card from './Card.js';
 
@@ -85,14 +85,16 @@ const Generate = ({ route, navigation }) => {
 }
 
 async function saveCard(cardData) {
-    var cardpath = DocumentDirectoryPath + "/cards/card-" + cardData["type"] + ".json";
+    let files = await readdir(DocumentDirectoryPath + "/cards");
+    let cardnum = files.length + 1;
+    let cardpath = DocumentDirectoryPath + "/cards/card-" + cardnum + ".json";
 
     // delete old card file with same name
-    try {
-        await unlink(cardpath);
-    } catch(error) {
-        // if the file was not found, do nothing
-    }
+    // try {
+    //     await unlink(cardpath);
+    // } catch(error) {
+    //     // if the file was not found, do nothing
+    // }
 
     // write card data as json to file
     await writeFile(cardpath , JSON.stringify(cardData));
