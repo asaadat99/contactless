@@ -2,42 +2,92 @@ import React from 'react';
 import { View, Text, TextInput, ScrollView } from 'react-native';
 import Button from './Button.js';
 import styles from "./Styles.js";
-import Fields from './Fields.js';
 import FieldPicker from './Picker.js'
 
 const Templates = ({ route, navigation }) => {
     const { type } = route.params;
 
+    const [ visibleFields, setVisibleFields ] = React.useState([]);
     // store keys/values for input fields in state
     const [ fields, setFields ] = React.useState({});
 
+    const [ fieldsList, setFieldsList ] = React.useState([
+        "Name",
+        "Email"
+    ]);
+
+    const fieldPrompt = "(select field)";
+    
     function updateField(field, value) {
-        updatedFields = {};
+        let updatedFields = {};
         Object.assign(updatedFields, fields);
         updatedFields[field] = value;
         setFields(updatedFields);
     };
 
-    const fieldInput = new Fields(updateField);
+    function createField(fieldname) {
+        return (
+            <TextInput 
+                style={styles.input}
+                placeholder={fieldname}
+                value={fields[fieldname]}
+                onChangeText={text => updateField(fieldname, text)}
+                placeholderTextColor="#878787"
+                key={fieldname}
+            />
+        );
+    }
 
+    function makeVisibleField(fieldName) {
+        // Check if this field has been added already
+        if(fieldsList.indexOf(fieldName) === -1) {
+            return;
+        } else {
+            // Mark field as added
+            fieldsList.splice(fieldsList.indexOf(fieldName), 1);
+            setFieldsList(fieldsList);
+            // Create and add the field
+            setVisibleFields(visibleFields.concat(createField(fieldName)));
+        }
+    }
+    
     const buttons = (
         <View>
+            <FieldPicker
+                options={[fieldPrompt].concat(fieldsList)}
+                onPress={(field) => {
+                    if(field === fieldPrompt) {
+                        return;
+                    }
+                    makeVisibleField(field);
+                }}
+            />
+            <Text></Text>
             <Button
                 title="Continue"
                 onPress={() => {
-                    gotFields = {};
+                    let gotFields = {};
                     Object.assign(gotFields, fields);
                     // User must input name
-                    if(gotFields["name"] == undefined || gotFields["name"] == "") {
+                    if(gotFields["Name"] == undefined || gotFields["name"] == "") {
                         return;
                     }
                     gotFields["type"] = "Professional";
                     navigation.navigate('Generate', { fields: gotFields });
                 }}
             />
-            <FieldPicker
-                options={fieldInput.fields}
-            />
+        </View>
+    );
+
+    if(type === "Professional") {
+        makeVisibleField("Name");
+    }
+
+    return (
+        <View>
+            <Text></Text>
+            {visibleFields}
+            {buttons}
         </View>
     );
 
@@ -46,13 +96,6 @@ const Templates = ({ route, navigation }) => {
             <View>
                 <ScrollView>
                     {fieldInput.addField("name")}
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Email"
-                        value={fields.email}
-                        onChangeText={text => updateField("email", text)}
-                        placeholderTextColor="#878787"
-                    />
                     <TextInput
                         style={styles.input}
                         placeholder="Phone Number"

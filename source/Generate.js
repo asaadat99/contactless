@@ -20,7 +20,7 @@ const Generate = ({ route, navigation }) => {
             continue;
         }
         switch(key) {
-        case "name":
+        case "Name":
             const firstSpace = value.indexOf(' ');
             if(firstSpace !== -1) {
                 contact.firstName = value.slice(0, firstSpace);
@@ -29,7 +29,7 @@ const Generate = ({ route, navigation }) => {
                 contact.firstName = value;
             }
             break;
-        case "email":
+        case "Email":
             contact.email = value;
             break;
         case "phone":
@@ -65,7 +65,7 @@ const Generate = ({ route, navigation }) => {
     // create object to store data needed to render card
     var cardData = {
         vcardString: contact.getFormattedString(),
-        name: fields["name"],
+        name: fields["Name"],
         type: fields["type"],
         color: color,
     };

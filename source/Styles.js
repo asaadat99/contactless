@@ -23,11 +23,12 @@ export default StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingVertical: 12,
-        paddingHorizontal: 32,
+        paddingHorizontal: 12,
         borderRadius: 4,
-        backgroundColor: '#73b4ff',
+        backgroundColor: '#3e96fa',
         marginVertical: 6,
-        marginHorizontal: 48,
+        marginLeft: 48,
+        marginRight: 12
     },
     picker: {
         alignItems: 'center',
@@ -35,8 +36,10 @@ export default StyleSheet.create({
         paddingVertical: 12,
         paddingHorizontal: 32,
         borderRadius: 4,
+        backgroundColor: '#d7dadd',
         marginVertical: 6,
-        marginHorizontal: 48,
+        marginHorizontal: 0,
+        width: 198
     },
     button_text: {
         fontSize: 16,

@@ -8,6 +8,10 @@ export default function Button(props) {
     // return blue button by default
     var buttonStyle = styles.button;
 
+    if(props.type === "picker") {
+        buttonStyle = styles.button_picker;
+    }
+
     return (
         <Pressable style={buttonStyle} onPress={onPress}>
             <Text style={styles.button_text}>{title}</Text>
