@@ -41,6 +41,16 @@ export default StyleSheet.create({
         marginHorizontal: 0,
         width: 198
     },
+    picker_wide: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingVertical: 12,
+        paddingHorizontal: 32,
+        borderRadius: 4,
+        backgroundColor: '#d7dadd',
+        marginVertical: 6,
+        marginHorizontal: 48,
+    },
     button_text: {
         fontSize: 16,
         lineHeight: 21,
@@ -61,7 +71,8 @@ export default StyleSheet.create({
         fontSize: 30,
         fontWeight: 'bold',
         color: 'white',
-        lineHeight: 42,
+        lineHeight: 30,
+        marginVertical: 10
     },
     qrcode: {
        borderWidth: 6,

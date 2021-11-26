@@ -54,20 +54,19 @@ const Generate = ({ route, navigation }) => {
     }
 
     // temporary color setting
-    // TODO: make this an option for the user
-    var color = [];
-    if(fields["type"] == "Professional") {
-        color = ['#19babf', '#2045a1'];
-    } else {
-        color = ['#db375d', '#9e1e70'];
-    }
+    // var color = [];
+    // if(fields["type"] == "Professional") {
+    //     color = ['#19babf', '#2045a1'];
+    // } else {
+    //     color = ['#db375d', '#9e1e70'];
+    // }
 
     // create object to store data needed to render card
     var cardData = {
         vcardString: contact.getFormattedString(),
-        name: fields["Name"],
-        type: fields["type"],
-        color: color,
+        topText: fields["topText"],
+        bottomText: fields["bottomText"],
+        color: fields["color"],
     };
 
     return (

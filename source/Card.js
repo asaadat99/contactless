@@ -9,7 +9,7 @@ const Card = (props) => {
         <View>
             <LinearGradient colors={props.data["color"]} style={styles.card}>
                 <Text style={styles.card_title_text}>
-                    {props.data["name"]}
+                    {props.data["topText"]}
                 </Text>
                 <View style={styles.qrcode}>
                     <QRCode
@@ -18,7 +18,7 @@ const Card = (props) => {
                     />
                 </View>
                 <Text style={styles.card_title_text}>
-                    {props.data["type"]}
+                    {props.data["bottomText"]}
                 </Text>
             </LinearGradient>
         </View>

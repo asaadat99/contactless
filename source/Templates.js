@@ -89,7 +89,7 @@ const Templates = ({ route, navigation }) => {
                         return;
                     }
                     gotFields["type"] = type;
-                    navigation.navigate('Generate', { fields: gotFields });
+                    navigation.navigate('Customize', { routeFields: gotFields });
                 }}
             />
         </View>

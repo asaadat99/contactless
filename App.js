@@ -6,6 +6,7 @@ var HomeScreen = require('./source/HomeScreen.js');
 var TemplateScreen = require('./source/TemplatePicker.js');
 var Generate = require('./source/Generate.js');
 var Templates = require('./source/Templates.js');
+var Customize = require('./source/Customize.js');
 
 const Stack = createNativeStackNavigator();
 
@@ -28,6 +29,11 @@ const App: () => Node = () => {
                     name="Templates"
                     component={Templates}
                     options={{ title: "Fill in your contact info" }}
+                />
+                <Stack.Screen 
+                    name="Customize"
+                    component={Customize}
+                    options={{ title: "Customize your card" }}
                 />
                 <Stack.Screen 
                     name="Generate"
