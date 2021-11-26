@@ -32,22 +32,22 @@ const Generate = ({ route, navigation }) => {
         case "Email":
             contact.email = value;
             break;
-        case "phone":
+        case "Phone Number":
             contact.cellPhone = value;
             break;
-        case "linkedin":
+        case "LinkedIn Username":
             contact.socialUrls["linkedIn"] = "https://www.linkedin.com/in/" + value;
             break;
-        case "github":
+        case "Github Username":
             contact.socialUrls["GitHub"] = "https://github.com/" + value;
             break;
-        case "website":
+        case "Website/Resume URL":
             contact.url = value;
             break;
-        case "instagram":
+        case "Instagram Username":
             contact.socialUrls["instagram"] = "https://www.instagram.com/" + value;
             break;
-        case "snapchat":
+        case "Snapchat Username":
             contact.socialUrls["snapchat"] = "http://www.snapchat.com/add/" + value;
             break;
         }

@@ -13,13 +13,19 @@ const Templates = ({ route, navigation }) => {
 
     const [ fieldsList, setFieldsList ] = React.useState([
         "Name",
-        "Email"
+        "Email",
+        "Phone Number",
+        "LinkedIn Username",
+        "Instagram Username",
+        "Snapchat Username",
+        "Github Username",
+        "Website/Resume URL",
     ]);
 
     const fieldPrompt = "(select field)";
     
     function updateField(field, value) {
-        let updatedFields = {};
+        var updatedFields = {};
         Object.assign(updatedFields, fields);
         updatedFields[field] = value;
         setFields(updatedFields);
@@ -51,7 +57,7 @@ const Templates = ({ route, navigation }) => {
             // Mark field as added
             newList.splice(newList.indexOf(fieldName), 1);
             // Create and add the field
-            newVis = newVis.concat(createField(fieldName));
+            newVis = newVis.concat(fieldName);
         });
 
         // Check if we've changed anything to update state
@@ -76,13 +82,13 @@ const Templates = ({ route, navigation }) => {
             <Button
                 title="Continue"
                 onPress={() => {
-                    let gotFields = {};
+                    var gotFields = {};
                     Object.assign(gotFields, fields);
                     // User must input name
-                    if(gotFields["Name"] == undefined || gotFields["name"] == "") {
+                    if(gotFields["Name"] == undefined || gotFields["Name"] == "") {
                         return;
                     }
-                    gotFields["type"] = "Professional";
+                    gotFields["type"] = type;
                     navigation.navigate('Generate', { fields: gotFields });
                 }}
             />
@@ -90,108 +96,46 @@ const Templates = ({ route, navigation }) => {
     );
 
     if(type === "Professional") {
-        makeVisibleFields(["Name", "Email"]);
-    }
-
-    return (
-        <View>
-            <Text></Text>
-            {visibleFields}
-            {buttons}
-        </View>
-    );
-
-    if(type === "Professional") {
-        return (
-            <View>
-                <ScrollView>
-                    {fieldInput.addField("name")}
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Phone Number"
-                        value={fields.phone}
-                        onChangeText={text => updateField("phone", text)}
-                        placeholderTextColor="#878787"
-                    />
-                    <TextInput
-                        style={styles.input}
-                        placeholder="LinkedIn Profile"
-                        value={fields.linkedin}
-                        onChangeText={text => updateField("linkedin", text)}
-                        placeholderTextColor="#878787"
-                    />
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Github Profile"
-                        value={fields.github}
-                        onChangeText={text => updateField("github", text)}
-                        placeholderTextColor="#878787"
-                    />
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Website/Resume URL"
-                        value={fields.website}
-                        onChangeText={text => updateField("website", text)}
-                        placeholderTextColor="#878787"
-                    />
-                    {buttons}
-                </ScrollView>
-            </View>
-        )
+        makeVisibleFields([
+            "Name", 
+            "Email", 
+            "Phone Number", 
+            "LinkedIn Username", 
+            "Website/Resume URL"
+        ]);
     }
 
     if(type === "Social") {
-        return (
-            <View>
-                <ScrollView>
-                    <TextInput 
-                        style={styles.input}
-                        placeholder="Name"
-                        value={fields.name}
-                        onChangeText={text => updateField("name", text)}
-                        placeholderTextColor="#878787"
-                    />
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Email"
-                        value={fields.email}
-                        onChangeText={text => updateField("email", text)}
-                        placeholderTextColor="#878787"
-                    />
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Phone Number"
-                        value={fields.phone}
-                        onChangeText={text => updateField("phone", text)}
-                        placeholderTextColor="#878787"
-                    />
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Instagram Profile"
-                        value={fields.linkedin}
-                        onChangeText={text => updateField("instagram", text)}
-                        placeholderTextColor="#878787"
-                    />
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Snapchat Profile"
-                        value={fields.linkedin}
-                        onChangeText={text => updateField("snapchat", text)}
-                        placeholderTextColor="#878787"
-                    />
-                    {buttons}
-                </ScrollView>
-            </View>
-        )
+        makeVisibleFields([
+            "Name", 
+            "Email", 
+            "Phone Number", 
+            "Instagram Username", 
+            "Snapchat Username"
+        ]);
     }
 
-    else return (
-        <View>
-            <Text>
-                No template selected. Please try again.
-            </Text>
-        </View>
-    )
+    if(type === "Custom") {
+        makeVisibleFields([
+            "Name",
+            "Phone Number"
+        ]);
+    }
+
+    // create fields to display
+    let visibleFieldsJSX = []
+    visibleFields.forEach((f) => {
+        visibleFieldsJSX.push(createField(f));
+    })
+
+    return (
+        <ScrollView>
+            <Text></Text>
+            {visibleFieldsJSX}
+            {buttons}
+            <Text></Text>
+        </ScrollView>
+    );
 }
 
 module.exports = Templates;
