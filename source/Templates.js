@@ -38,16 +38,26 @@ const Templates = ({ route, navigation }) => {
         );
     }
 
-    function makeVisibleField(fieldName) {
+    function makeVisibleFields(fieldNames) {
         // Check if this field has been added already
-        if(fieldsList.indexOf(fieldName) === -1) {
-            return;
-        } else {
+        var newList = [].concat(fieldsList);
+        var newVis = [].concat(visibleFields);
+
+        fieldNames.filter((fname) => {
+
+            return fieldsList.indexOf(fname) !== -1;
+        
+        }).forEach((fieldName) => {
             // Mark field as added
-            fieldsList.splice(fieldsList.indexOf(fieldName), 1);
-            setFieldsList(fieldsList);
+            newList.splice(newList.indexOf(fieldName), 1);
             // Create and add the field
-            setVisibleFields(visibleFields.concat(createField(fieldName)));
+            newVis = newVis.concat(createField(fieldName));
+        });
+
+        // Check if we've changed anything to update state
+        if(JSON.stringify(fieldsList) !== JSON.stringify(newList)) {
+            setFieldsList(newList);
+            setVisibleFields(newVis);
         }
     }
     
@@ -59,7 +69,7 @@ const Templates = ({ route, navigation }) => {
                     if(field === fieldPrompt) {
                         return;
                     }
-                    makeVisibleField(field);
+                    makeVisibleFields([field]);
                 }}
             />
             <Text></Text>
@@ -80,7 +90,7 @@ const Templates = ({ route, navigation }) => {
     );
 
     if(type === "Professional") {
-        makeVisibleField("Name");
+        makeVisibleFields(["Name", "Email"]);
     }
 
     return (
