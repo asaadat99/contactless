@@ -20,6 +20,11 @@ const Templates = ({ route, navigation }) => {
         "Snapchat Username",
         "Github Username",
         "Website/Resume URL",
+        "Twitter Username",
+        "Facebook URL",
+        "Nickname",
+        "Title",
+        "Organization"
     ]);
 
     const fieldPrompt = "(select field)";

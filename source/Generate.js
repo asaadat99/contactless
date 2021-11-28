@@ -48,7 +48,22 @@ const Generate = ({ route, navigation }) => {
             contact.socialUrls["instagram"] = "https://www.instagram.com/" + value;
             break;
         case "Snapchat Username":
-            contact.socialUrls["snapchat"] = "http://www.snapchat.com/add/" + value;
+            contact.socialUrls["snapchat"] = "https://www.snapchat.com/add/" + value;
+            break;
+        case "Twitter Username":
+            contact.socialUrls["twitter"] = "https://www.twitter.com/" + value;
+            break;
+        case "Facebook URL":
+            contact.socialUrls["facebook"] = value;
+            break;
+        case "Nickname":
+            contact.nickname = value;
+            break;
+        case "Title":
+            contact.title = value;
+            break;
+        case "Organization":
+            contact.organization = value;
             break;
         }
     }
