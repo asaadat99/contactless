@@ -1,4 +1,4 @@
-package com.contactless;
+package com.contactless441;
 
 import com.facebook.react.ReactActivity;
 
